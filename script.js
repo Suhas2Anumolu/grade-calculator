@@ -7,9 +7,8 @@ document.getElementById('generate-btn').addEventListener('click', () => {
     }
   
     const dynamicFields = document.getElementById('dynamic-fields');
-    dynamicFields.innerHTML = ''; // Clear previous fields
+    dynamicFields.innerHTML = ''; 
   
-    // Generate input fields dynamically
     for (let i = 1; i <= numSections; i++) {
       const fieldset = document.createElement('div');
       fieldset.classList.add('input-group');
@@ -25,7 +24,6 @@ document.getElementById('generate-btn').addEventListener('click', () => {
       dynamicFields.appendChild(fieldset);
     }
   
-    // Show the grade form
     document.getElementById('grade-form').style.display = 'block';
   });
   
@@ -34,7 +32,6 @@ document.getElementById('generate-btn').addEventListener('click', () => {
     const totals = Array.from(document.querySelectorAll('.total-input')).map(input => Number(input.value));
     const weights = Array.from(document.querySelectorAll('.weight-input')).map(input => Number(input.value));
   
-    // Validation
     if (scores.some(isNaN) || totals.some(isNaN) || weights.some(isNaN)) {
       alert('Please fill out all fields!');
       return;
@@ -45,28 +42,25 @@ document.getElementById('generate-btn').addEventListener('click', () => {
       alert('The total weight must equal 100%!');
       return;
     }
-  
-    // Calculate weighted grade
     let weightedGrade = 0;
     scores.forEach((score, index) => {
-      const percentage = (score / totals[index]) * 100; // Convert score to percentage
-      weightedGrade += (percentage * weights[index]) / 100; // Apply weight to percentage
+      const percentage = (score / totals[index]) * 100; 
+      weightedGrade += (percentage * weights[index]) / 100; 
     });
   
-    // Display result
+   
     document.getElementById('weighted-grade').textContent = weightedGrade.toFixed(2);
     document.getElementById('result').style.display = 'block';
   });
   document.getElementById('generateFields').addEventListener('click', function () {
     let numSections = document.getElementById('numSections').value;
     let sectionsContainer = document.getElementById('sectionsContainer');
-    sectionsContainer.innerHTML = ''; // Clear previous sections
+    sectionsContainer.innerHTML = ''; 
   
     for (let i = 1; i <= numSections; i++) {
       let sectionDiv = document.createElement('div');
       sectionDiv.classList.add('section');
       
-      // Create Score, Total Points, and Weight input for each section
       sectionDiv.innerHTML = `
         <label for="score${i}">Score for Section ${i}:</label>
         <input type="number" id="score${i}" class="score" placeholder="Enter score for section ${i}" />
